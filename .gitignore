@@ -10,3 +10,4 @@ __pycache__/
 .vscode/
 .idea/
 openlane/runs/
+results/verification/verilator-coverage.dat

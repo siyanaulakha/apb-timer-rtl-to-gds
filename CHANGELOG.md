@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.3 — Real regression evidence
+
+- Recorded the real OSS CAD Suite verification results: 30/30 Verilator tests and 4,099/4,099 scoreboard checks passed.
+- Recorded the Icarus smoke result: 32/32 checks passed.
+- Recorded generic Yosys synthesis: 492 cells, 67 sequential cells, and zero structural problems.
+- Added a focused GTKWave screenshot for the clear-versus-match corner case.
+- Updated README and results documentation to distinguish measured RTL evidence from pending Sky130 physical-design results.
+
 ## v0.1.2 — Portable Verilator tracing
 
 - Replaced the FST trace backend with VCD for the default Verilator build.

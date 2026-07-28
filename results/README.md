@@ -2,6 +2,8 @@
 
 Only compact, inspectable, tool-generated evidence belongs here. Do not commit enormous temporary OpenLane directories.
 
+Current compact evidence includes a focused GTKWave verification capture under `results/verification/`.
+
 Expected final evidence:
 
 - Icarus smoke log

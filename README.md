@@ -4,7 +4,7 @@ A compact SoC-quality timer peripheral designed in synthesizable SystemVerilog, 
 
 The project is intentionally small enough to audit in an interview while still exercising real hardware-engineering work: protocol timing, MMIO register design, partial writes, event ordering, sticky interrupts, reference modelling, scoreboarding, assertions, randomized verification, synthesis constraints, and physical-design report collection.
 
-> **Status:** Source-complete first release. Tool-generated verification, synthesis, timing, area, DRC, and LVS claims must only be made after running the corresponding flow and committing its reports.
+> **Status:** RTL verification and generic synthesis are complete on OSS CAD Suite: Verilator lint passed, the Icarus smoke test passed 32/32 checks, the C++/Verilator regression passed 30/30 tests with 4,099 scoreboard checks and zero failures, and Yosys reported zero structural problems. Sky130 physical implementation, timing, area, DRC, and LVS remain pending.
 
 ## Architecture
 
@@ -48,6 +48,18 @@ The primary environment uses meaningful C++ classes rather than a procedural tes
 - `TestRunner` runs isolated named tests with deterministic seeds.
 
 The suite contains **29 directed tests plus one deterministic randomized test**. See [`docs/verification-plan.md`](docs/verification-plan.md).
+
+### Measured verification evidence
+
+- Icarus smoke test: **32/32 checks passed**
+- Verilator regression: **30/30 tests passed**
+- Scoreboard: **4,099 checks, zero failures**
+- Randomized traffic: **500 deterministic APB operations, seed 107**
+- Generic Yosys synthesis: **492 cells, 67 sequential cells, zero structural problems**
+
+The focused GTKWave capture below shows the APB transaction activity and internal timer state used to inspect the set-dominant clear-versus-match corner case.
+
+![GTKWave APB timer verification capture](results/verification/gtkwave-t18-clear-match-collision.png)
 
 ## Quick start on Ubuntu 24.04
 
