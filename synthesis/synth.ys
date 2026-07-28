@@ -1,0 +1,18 @@
+# Generic, reproducible Yosys synthesis. Run from repository root.
+read_verilog -sv -Irtl rtl/apb_timer.sv
+hierarchy -check -top apb_timer
+proc
+opt
+check
+fsm
+opt
+memory
+opt
+techmap
+opt
+abc -g AND,OR,XOR,XNOR,MUX
+clean
+check
+stat
+write_verilog -noattr build/yosys/apb_timer_synth.v
+write_json build/yosys/apb_timer_synth.json

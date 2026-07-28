@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="460" viewBox="0 0 1050 460">
+  <rect width="1050" height="460" fill="white"/>
+  <style>.box{fill:#f7f7f7;stroke:#222;stroke-width:2;rx:10}.title{font:700 21px sans-serif}.text{font:15px sans-serif}.line{stroke:#222;stroke-width:2;marker-end:url(#a)}</style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#222"/></marker></defs>
+  <text x="525" y="34" text-anchor="middle" class="title">C++17 / Verilator Verification Architecture</text>
+  <rect x="35" y="90" width="190" height="105" class="box"/><text x="130" y="122" text-anchor="middle" class="title">TestRunner</text><text x="60" y="156" class="text">Named tests</text><text x="60" y="180" class="text">Seed / pass-fail</text>
+  <rect x="300" y="70" width="205" height="125" class="box"/><text x="402" y="103" text-anchor="middle" class="title">ApbMaster</text><text x="325" y="138" class="text">Setup/access driver</text><text x="325" y="164" class="text">Back-to-back transfers</text>
+  <rect x="595" y="70" width="205" height="125" class="box"/><text x="697" y="103" text-anchor="middle" class="title">Verilated DUT</text><text x="620" y="138" class="text">SystemVerilog RTL</text><text x="620" y="164" class="text">VCD + assertions</text>
+  <rect x="300" y="270" width="205" height="125" class="box"/><text x="402" y="303" text-anchor="middle" class="title">Reference Model</text><text x="325" y="338" class="text">Cycle-accurate state</text><text x="325" y="364" class="text">Independent prediction</text>
+  <rect x="595" y="270" width="205" height="125" class="box"/><text x="697" y="303" text-anchor="middle" class="title">Scoreboard</text><text x="620" y="338" class="text">PRDATA / error / IRQ</text><text x="620" y="364" class="text">Diagnostics + exit code</text>
+  <rect x="850" y="175" width="165" height="115" class="box"/><text x="932" y="207" text-anchor="middle" class="title">Coverage</text><text x="875" y="242" class="text">Semantic bins</text><text x="875" y="267" class="text">Markdown report</text>
+  <line x1="225" y1="142" x2="300" y2="132" class="line"/><line x1="505" y1="132" x2="595" y2="132" class="line"/>
+  <line x1="402" y1="195" x2="402" y2="270" class="line"/><line x1="697" y1="195" x2="697" y2="270" class="line"/>
+  <line x1="505" y1="332" x2="595" y2="332" class="line"/><line x1="800" y1="132" x2="850" y2="205" class="line"/><line x1="800" y1="332" x2="850" y2="270" class="line"/>
+</svg>

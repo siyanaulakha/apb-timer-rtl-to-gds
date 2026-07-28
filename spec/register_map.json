@@ -1,0 +1,49 @@
+{
+  "peripheral": "apb_timer",
+  "address_width": 12,
+  "data_width": 32,
+  "registers": [
+    {
+      "name": "CONTROL",
+      "offset": "0x000",
+      "reset": "0x00000000",
+      "access": "rw",
+      "description": "Timer and interrupt control",
+      "fields": [
+        {"name": "TIMER_ENABLE", "lsb": 0, "width": 1, "access": "rw", "reset": 0},
+        {"name": "IRQ_ENABLE", "lsb": 1, "width": 1, "access": "rw", "reset": 0}
+      ]
+    },
+    {
+      "name": "COUNTER",
+      "offset": "0x004",
+      "reset": "0x00000000",
+      "access": "rw",
+      "description": "Current 32-bit timer count",
+      "fields": [
+        {"name": "COUNTER_VALUE", "lsb": 0, "width": 32, "access": "rw", "reset": 0}
+      ]
+    },
+    {
+      "name": "COMPARE",
+      "offset": "0x008",
+      "reset": "0xFFFFFFFF",
+      "access": "rw",
+      "description": "Compare threshold",
+      "fields": [
+        {"name": "COMPARE_VALUE", "lsb": 0, "width": 32, "access": "rw", "reset": 4294967295}
+      ]
+    },
+    {
+      "name": "STATUS",
+      "offset": "0x00C",
+      "reset": "0x00000000",
+      "access": "mixed",
+      "description": "Sticky match and live interrupt status",
+      "fields": [
+        {"name": "MATCH_PENDING", "lsb": 0, "width": 1, "access": "rw1c", "reset": 0},
+        {"name": "IRQ_ACTIVE", "lsb": 1, "width": 1, "access": "ro", "reset": 0}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+===== DATE =====
+2026-07-29T03:03:04+05:30
+
+===== TOOL VERSIONS =====
+Icarus Verilog version 14.0 (devel) (s20260301-328-geda9fdcd1-dirty)
+
+Copyright (c) 2000-2026 Stephen Williams (steve@icarus.com)
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+Verilator 5.051 devel rev v5.050-103-g5fd1c93d4 (mod)
+Yosys 0.67+102 (git sha1 07a615a28-dirty, Release, Clang /usr/bin/clang++ 21.1.8)
+g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+Python 3.11.6
+
+===== CLEAN =====
+
+===== REGISTER GENERATION =====
+Generated register files are current.
+
+===== VERILATOR LINT =====
+- V e r i l a t i o n   R e p o r t: Verilator 5.051 devel rev v5.050-103-g5fd1c93d4 (mod)
+- Verilator: Built from 0.039 MB sources in 2 modules, into 0.040 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.009 s (elab=0.001, cvt=0.005, bld=0.000); cpu 0.009 s on 1 threads; allocated 23.043 MB
+
+===== ICARUS SMOKE TEST =====
+warning: Some design elements have no explicit time unit and/or
+       : time precision. This may cause confusing timing results.
+       : Affected design elements are:
+       :   -- module apb_timer declared here: rtl/apb_timer.sv:3
+rtl/apb_timer.sv:67: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+rtl/apb_timer.sv:97: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+VCD info: dumpfile build/apb_timer_smoke.vcd opened for output.
+ERROR: verification/rtl/apb_timer_smoke_tb.sv:51: interrupt after compare: expected 1, observed 0
+       Time: 265000  Scope: apb_timer_smoke_tb.check_equal1
+FATAL: verification/rtl/apb_timer_smoke_tb.sv:142: SMOKE FAIL: 1 of 32 checks failed
+       Time: 410000  Scope: apb_timer_smoke_tb
+make: *** [Makefile:41: smoke] Error 1
+
+===== VERILATOR C++ REGRESSION =====
+%Warning-SYNCASYNCNET: rtl/apb_timer.sv:5:35: Signal flopped as both synchronous and async: 'PRESETn'
+                       rtl/apb_timer.sv:110:14: ... Location of async usage
+  110 |         if (!PRESETn) begin
+      |              ^~~~~~~
+                       assertions/apb_timer_sva.sv:21:27: ... Location of sync usage
+   21 |     default disable iff (!PRESETn);
+      |                           ^~~~~~~
+                       ... For warning description see https://verilator.org/warn/SYNCASYNCNET?v=5.051
+                       ... Use "/* verilator lint_off SYNCASYNCNET */" and lint_on around source to disable this message.
+%Error: Exiting due to 1 warning(s)
+make: *** [Makefile:44: verify] Error 1
+
+===== YOSYS SYNTHESIS =====
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.67+102 (git sha1 07a615a28-dirty, Release, Clang /usr/bin/clang++ 21.1.8)
+[TCL: yosys -import] Command name collision: found pre-existing command `cd' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `eval' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `exec' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `read' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `trace' -> skip.
+
+1. Executing Verilog-2005 frontend: rtl/apb_timer.sv
+Parsing SystemVerilog input from `rtl/apb_timer.sv' to AST representation.
+Generating RTLIL representation for module `\apb_timer'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \apb_timer
+
+2.2. Analyzing design hierarchy..
+Top module:  \apb_timer
+Removed 0 unused modules.
+ERROR: TCL interpreter returned an error: wrong # args: should be "proc name args body"
+make: *** [Makefile:50: synth] Error 1

@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.svg text
+*.json text
+*.sv text
+*.svh text
+*.cpp text
+*.hpp text
+*.sh text eol=lf

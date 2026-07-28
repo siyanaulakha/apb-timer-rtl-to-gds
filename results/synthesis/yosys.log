@@ -1,0 +1,569 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.67+102 (git sha1 07a615a28-dirty, Release, Clang /usr/bin/clang++ 21.1.8)
+
+-- Executing script file `synthesis/synth.ys' --
+
+1. Executing Verilog-2005 frontend: rtl/apb_timer.sv
+Parsing SystemVerilog input from `rtl/apb_timer.sv' to AST representation.
+Generating RTLIL representation for module `\apb_timer'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \apb_timer
+
+2.2. Analyzing design hierarchy..
+Top module:  \apb_timer
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 4 switch rules as full_case in process $proc$rtl/apb_timer.sv:93$58 in module apb_timer.
+Marked 4 switch rules as full_case in process $proc$rtl/apb_timer.sv:92$46 in module apb_timer.
+Marked 2 switch rules as full_case in process $proc$rtl/apb_timer.sv:110$41 in module apb_timer.
+Marked 2 switch rules as full_case in process $proc$rtl/apb_timer.sv:95$39 in module apb_timer.
+Marked 1 switch rules as full_case in process $proc$rtl/apb_timer.sv:67$10 in module apb_timer.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 22 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \PRESETn in `\apb_timer.$proc$rtl/apb_timer.sv:110$41'.
+
+3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~15 debug messages>
+
+3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\apb_timer.$proc$rtl/apb_timer.sv:93$58'.
+     1/4: $4\merge_bytes$func$rtl/apb_timer.sv:93$5.result[31:24]$69
+     2/4: $3\merge_bytes$func$rtl/apb_timer.sv:93$5.result[23:16]$68
+     3/4: $2\merge_bytes$func$rtl/apb_timer.sv:93$5.result[15:8]$67
+     4/4: $1\merge_bytes$func$rtl/apb_timer.sv:93$5.result[7:0]$66
+Creating decoders for process `\apb_timer.$proc$rtl/apb_timer.sv:92$46'.
+     1/4: $4\merge_bytes$func$rtl/apb_timer.sv:92$4.result[31:24]$57
+     2/4: $3\merge_bytes$func$rtl/apb_timer.sv:92$4.result[23:16]$56
+     3/4: $2\merge_bytes$func$rtl/apb_timer.sv:92$4.result[15:8]$55
+     4/4: $1\merge_bytes$func$rtl/apb_timer.sv:92$4.result[7:0]$54
+Creating decoders for process `\apb_timer.$proc$rtl/apb_timer.sv:110$41'.
+     1/5: $0\match_pending_q[0:0]
+     2/5: $0\compare_q[31:0]
+     3/5: $0\counter_q[31:0]
+     4/5: $0\irq_enable_q[0:0]
+     5/5: $0\timer_enable_q[0:0]
+Creating decoders for process `\apb_timer.$proc$rtl/apb_timer.sv:95$39'.
+     1/2: $2\PRDATA[31:0]
+     2/2: $1\PRDATA[31:0]
+Creating decoders for process `\apb_timer.$proc$rtl/apb_timer.sv:67$10'.
+     1/1: $1\address_valid[0:0]
+
+3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\apb_timer.\merge_bytes$func$rtl/apb_timer.sv:93$3.$result' from process `\apb_timer.$proc$rtl/apb_timer.sv:93$58'.
+No latch inferred for signal `\apb_timer.\merge_bytes$func$rtl/apb_timer.sv:92$2.$result' from process `\apb_timer.$proc$rtl/apb_timer.sv:92$46'.
+No latch inferred for signal `\apb_timer.\PRDATA' from process `\apb_timer.$proc$rtl/apb_timer.sv:95$39'.
+No latch inferred for signal `\apb_timer.\address_valid' from process `\apb_timer.$proc$rtl/apb_timer.sv:67$10'.
+
+3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\apb_timer.\timer_enable_q' using process `\apb_timer.$proc$rtl/apb_timer.sv:110$41'.
+  created $adff cell `$procdff$124' with positive edge clock and positive level reset.
+Creating register for signal `\apb_timer.\irq_enable_q' using process `\apb_timer.$proc$rtl/apb_timer.sv:110$41'.
+  created $adff cell `$procdff$129' with positive edge clock and positive level reset.
+Creating register for signal `\apb_timer.\counter_q' using process `\apb_timer.$proc$rtl/apb_timer.sv:110$41'.
+  created $adff cell `$procdff$134' with positive edge clock and positive level reset.
+Creating register for signal `\apb_timer.\compare_q' using process `\apb_timer.$proc$rtl/apb_timer.sv:110$41'.
+  created $adff cell `$procdff$139' with positive edge clock and positive level reset.
+Creating register for signal `\apb_timer.\match_pending_q' using process `\apb_timer.$proc$rtl/apb_timer.sv:110$41'.
+  created $adff cell `$procdff$144' with positive edge clock and positive level reset.
+
+3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 4 empty switches in `\apb_timer.$proc$rtl/apb_timer.sv:93$58'.
+Removing empty process `apb_timer.$proc$rtl/apb_timer.sv:93$58'.
+Found and cleaned up 4 empty switches in `\apb_timer.$proc$rtl/apb_timer.sv:92$46'.
+Removing empty process `apb_timer.$proc$rtl/apb_timer.sv:92$46'.
+Found and cleaned up 4 empty switches in `\apb_timer.$proc$rtl/apb_timer.sv:110$41'.
+Removing empty process `apb_timer.$proc$rtl/apb_timer.sv:110$41'.
+Found and cleaned up 2 empty switches in `\apb_timer.$proc$rtl/apb_timer.sv:95$39'.
+Removing empty process `apb_timer.$proc$rtl/apb_timer.sv:95$39'.
+Found and cleaned up 1 empty switch in `\apb_timer.$proc$rtl/apb_timer.sv:67$10'.
+Removing empty process `apb_timer.$proc$rtl/apb_timer.sv:67$10'.
+Cleaned up 15 empty switches.
+
+3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module apb_timer.
+<suppressed ~15 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module apb_timer.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\apb_timer'.
+Computing hashes of 72 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+Computing hashes of 56 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+<suppressed ~48 debug messages>
+Removed a total of 16 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \apb_timer..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$112.
+Removed 1 multiplexer ports.
+<suppressed ~23 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \apb_timer.
+Performed a total of 0 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\apb_timer'.
+Computing hashes of 55 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$134 ($adff) from module apb_timer (D = $procmux$99_Y [7:0], Q = \counter_q [7:0]).
+Adding EN signal on $procdff$134 ($adff) from module apb_timer (D = $procmux$99_Y [15:8], Q = \counter_q [15:8]).
+Adding EN signal on $procdff$134 ($adff) from module apb_timer (D = $procmux$99_Y [23:16], Q = \counter_q [23:16]).
+Adding EN signal on $procdff$134 ($adff) from module apb_timer (D = $procmux$99_Y [31:24], Q = \counter_q [31:24]).
+Adding EN signal on $procdff$124 ($adff) from module apb_timer (D = \PWDATA [0], Q = \timer_enable_q).
+Adding EN signal on $procdff$139 ($adff) from module apb_timer (D = \merge_bytes$func$rtl/apb_timer.sv:93$3.$result, Q = \compare_q).
+Adding EN signal on $procdff$129 ($adff) from module apb_timer (D = \PWDATA [1], Q = \irq_enable_q).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \apb_timer..
+Removed 5 unused cells and 96 unused wires.
+<suppressed ~6 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module apb_timer.
+<suppressed ~4 debug messages>
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \apb_timer..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~20 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \apb_timer.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\apb_timer'.
+Computing hashes of 65 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+Computing hashes of 62 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $auto$ff.cc:337:slice$174 ($adffe) from module apb_timer (D = \PWDATA [7:0], Q = \compare_q [7:0]).
+Adding EN signal on $auto$ff.cc:337:slice$174 ($adffe) from module apb_timer (D = \PWDATA [15:8], Q = \compare_q [15:8]).
+Adding EN signal on $auto$ff.cc:337:slice$174 ($adffe) from module apb_timer (D = \PWDATA [23:16], Q = \compare_q [23:16]).
+Adding EN signal on $auto$ff.cc:337:slice$174 ($adffe) from module apb_timer (D = \PWDATA [31:24], Q = \compare_q [31:24]).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \apb_timer..
+Removed 4 unused cells and 5 unused wires.
+<suppressed ~6 debug messages>
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module apb_timer.
+
+4.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \apb_timer..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+4.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \apb_timer.
+Performed a total of 0 changes.
+
+4.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\apb_timer'.
+Computing hashes of 65 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+Removed a total of 0 cells.
+
+4.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \apb_timer..
+
+4.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module apb_timer.
+
+4.23. Finished fast OPT passes. (There is nothing left to do.)
+
+5. Executing CHECK pass (checking for obvious problems).
+Checking module apb_timer...
+Found and reported 0 problems.
+
+6. Executing FSM pass (extract and optimize FSM).
+
+6.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+6.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+6.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \apb_timer..
+
+6.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+6.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+6.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+7. Executing OPT pass (performing simple optimizations).
+
+7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module apb_timer.
+
+7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\apb_timer'.
+Computing hashes of 65 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+Removed a total of 0 cells.
+
+7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \apb_timer..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \apb_timer.
+Performed a total of 0 changes.
+
+7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\apb_timer'.
+Computing hashes of 65 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+Removed a total of 0 cells.
+
+7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \apb_timer..
+
+7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module apb_timer.
+
+7.9. Finished fast OPT passes. (There is nothing left to do.)
+
+8. Executing MEMORY pass.
+
+8.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+8.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+8.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+8.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+8.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \apb_timer..
+
+8.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+8.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+8.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \apb_timer..
+
+8.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+8.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+9. Executing OPT pass (performing simple optimizations).
+
+9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module apb_timer.
+
+9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\apb_timer'.
+Computing hashes of 65 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+Removed a total of 0 cells.
+
+9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \apb_timer..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \apb_timer.
+Performed a total of 0 changes.
+
+9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\apb_timer'.
+Computing hashes of 65 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+Removed a total of 0 cells.
+
+9.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \apb_timer..
+
+9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module apb_timer.
+
+9.9. Finished fast OPT passes. (There is nothing left to do.)
+
+10. Executing TECHMAP pass (map to technology primitives).
+
+10.1. Executing Verilog-2005 frontend: /home/zira/tools/eda/oss-cad-suite/lib/../share/yosys/techmap.v
+Parsing Verilog input from `/home/zira/tools/eda/oss-cad-suite/lib/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+10.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $reduce_or.
+Running "alumacc" on wrapper $extern:wrap:$add:Y_WIDTH=32:B_WIDTH=32:A_WIDTH=32:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$add:Y_WIDTH=32:B_WIDTH=32:A_WIDTH=32:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$add:Y_WIDTH=32:B_WIDTH=32:A_WIDTH=32:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $logic_or.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $pmux.
+Using extmapper simplemap for cells of type $adff.
+Using template $paramod$fbc7873bff55778c0b3173955b7e4bce1d9d6834\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using extmapper simplemap for cells of type $pos.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $and.
+No more expansions possible.
+<suppressed ~481 debug messages>
+
+11. Executing OPT pass (performing simple optimizations).
+
+11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module apb_timer.
+<suppressed ~507 debug messages>
+
+11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\apb_timer'.
+Computing hashes of 588 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+Computing hashes of 564 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+Computing hashes of 557 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+<suppressed ~93 debug messages>
+Removed a total of 31 cells.
+
+11.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \apb_timer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+11.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \apb_timer.
+Performed a total of 0 changes.
+
+11.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\apb_timer'.
+Computing hashes of 557 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+Removed a total of 0 cells.
+
+11.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \apb_timer..
+Removed 5 unused cells and 287 unused wires.
+<suppressed ~6 debug messages>
+
+11.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module apb_timer.
+
+11.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+11.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \apb_timer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+11.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \apb_timer.
+Performed a total of 0 changes.
+
+11.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\apb_timer'.
+Computing hashes of 552 cells of `\apb_timer'.
+Finding duplicate cells in `\apb_timer'.
+Removed a total of 0 cells.
+
+11.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \apb_timer..
+
+11.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module apb_timer.
+
+11.16. Finished fast OPT passes. (There is nothing left to do.)
+
+12. Executing ABC pass (technology mapping using ABC).
+
+12.1. Extracting gate netlist of module `\apb_timer' to `<abc-temp-dir>/input.blif'..
+Replacing 64 occurrences of constant undef bits with constant zero bits
+
+12.1.1. Executed ABC.
+Extracted 485 gates and 605 wires to a netlist network with 118 inputs and 76 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Jul 28 2026 14:07:14)
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: 
+ABC: YOSYS_ABC_DONE 
+
+12.1.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:      231
+ABC RESULTS:               MUX cells:        4
+ABC RESULTS:               NOT cells:       29
+ABC RESULTS:                OR cells:      107
+ABC RESULTS:              XNOR cells:       21
+ABC RESULTS:               XOR cells:       33
+ABC RESULTS:        internal signals:      411
+ABC RESULTS:           input signals:      118
+ABC RESULTS:          output signals:       76
+Removing temp directory.
+Removing global temp directory.
+Removed 0 unused cells and 353 unused wires.
+
+13. Executing CHECK pass (checking for obvious problems).
+Checking module apb_timer...
+Found and reported 0 problems.
+
+14. Printing statistics.
+
+=== apb_timer ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      388 wires
+      813 wire bits
+       29 public wires
+      423 public wire bits
+       13 ports
+       91 port bits
+      492 cells
+      231   $_AND_
+       34   $_DFFE_PN0P_
+       32   $_DFFE_PN1P_
+        1   $_DFF_PN0_
+        4   $_MUX_
+       29   $_NOT_
+      107   $_OR_
+       21   $_XNOR_
+       33   $_XOR_
+
+15. Executing Verilog backend.
+
+15.1. Executing BMUXMAP pass.
+
+15.2. Executing DEMUXMAP pass.
+Dumping module `\apb_timer'.
+
+16. Executing JSON backend.
+
+End of script. Logfile hash: 15adda8ec8, time: 0.12s, user: 0.05s, system: 0.01s, MEM: 23.55 MB peak
+Yosys 0.67+102 (git sha1 07a615a28-dirty, Release, Clang /usr/bin/clang++ 21.1.8)
+Time spent: 65% 1x abc (0 sec), 7% 1x techmap (0 sec), ...

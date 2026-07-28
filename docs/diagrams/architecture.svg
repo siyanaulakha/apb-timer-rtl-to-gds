@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430">
+  <rect width="1000" height="430" fill="white"/>
+  <style>
+    .box{fill:#f7f7f7;stroke:#222;stroke-width:2;rx:10}.title{font:700 22px sans-serif}.text{font:16px sans-serif}.small{font:14px sans-serif}.line{stroke:#222;stroke-width:2;marker-end:url(#a)}
+  </style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#222"/></marker></defs>
+  <text x="500" y="35" text-anchor="middle" class="title">APB4 Programmable Timer</text>
+  <rect x="35" y="105" width="195" height="190" class="box"/>
+  <text x="132" y="135" text-anchor="middle" class="title">APB4 Slave</text>
+  <text x="55" y="170" class="text">Address decode</text><text x="55" y="198" class="text">Setup/access timing</text>
+  <text x="55" y="226" class="text">PSTRB byte writes</text><text x="55" y="254" class="text">PREADY / PSLVERR</text>
+  <rect x="310" y="70" width="220" height="110" class="box"/>
+  <text x="420" y="103" text-anchor="middle" class="title">Control Registers</text>
+  <text x="335" y="135" class="text">TIMER_ENABLE</text><text x="335" y="162" class="text">IRQ_ENABLE</text>
+  <rect x="310" y="230" width="220" height="130" class="box"/>
+  <text x="420" y="264" text-anchor="middle" class="title">32-bit Datapath</text>
+  <text x="335" y="298" class="text">COUNTER + 1</text><text x="335" y="326" class="text">COMPARE equality</text>
+  <rect x="610" y="70" width="225" height="110" class="box"/>
+  <text x="722" y="103" text-anchor="middle" class="title">Sticky Status</text>
+  <text x="635" y="136" class="text">MATCH_PENDING</text><text x="635" y="163" class="small">set dominates W1C clear</text>
+  <rect x="610" y="230" width="225" height="130" class="box"/>
+  <text x="722" y="264" text-anchor="middle" class="title">IRQ Logic</text>
+  <text x="635" y="305" class="text">pending AND enable</text><text x="635" y="333" class="text">active-high level output</text>
+  <line x1="230" y1="165" x2="310" y2="125" class="line"/><line x1="230" y1="235" x2="310" y2="285" class="line"/>
+  <line x1="530" y1="125" x2="610" y2="125" class="line"/><line x1="530" y1="290" x2="610" y2="145" class="line"/>
+  <line x1="722" y1="180" x2="722" y2="230" class="line"/>
+  <line x1="835" y1="295" x2="945" y2="295" class="line"/><text x="900" y="280" class="text">irq_o</text>
+</svg>

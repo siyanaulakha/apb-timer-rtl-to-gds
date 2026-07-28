@@ -1,0 +1,12 @@
+/build/
+/obj_dir/
+coverage.dat
+*.vcd
+*.fst
+*.log.tmp
+__pycache__/
+*.pyc
+.DS_Store
+.vscode/
+.idea/
+openlane/runs/

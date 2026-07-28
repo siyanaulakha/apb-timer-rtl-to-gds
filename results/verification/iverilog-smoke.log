@@ -1,0 +1,3 @@
+VCD info: dumpfile build/apb_timer_smoke.vcd opened for output.
+SMOKE PASS: 32 checks
+verification/rtl/apb_timer_smoke_tb.sv:145: $finish called at 420000 (1ps)

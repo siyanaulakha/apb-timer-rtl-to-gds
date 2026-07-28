@@ -1,0 +1,78 @@
+APB Timer C++ Verification
+seed=107 random_operations=500 trace=1
+
+[ RUN      ] T18_clear_match_collision_set_dominant
+%Warning: previous dump at t=0, requesting t=0, dump call ignored
+%Warning: previous dump at t=0, requesting t=0, dump call ignored
+%Warning: previous dump at t=10, requesting t=10, dump call ignored
+%Warning: previous dump at t=20, requesting t=20, dump call ignored
+%Warning: previous dump at t=30, requesting t=30, dump call ignored
+%Warning: previous dump at t=30, requesting t=30, dump call ignored
+%Warning: previous dump at t=40, requesting t=40, dump call ignored
+%Warning: previous dump at t=40, requesting t=40, dump call ignored
+%Warning: previous dump at t=50, requesting t=50, dump call ignored
+%Warning: previous dump at t=50, requesting t=50, dump call ignored
+%Warning: previous dump at t=60, requesting t=60, dump call ignored
+%Warning: previous dump at t=60, requesting t=60, dump call ignored
+%Warning: previous dump at t=60, requesting t=60, dump call ignored
+%Warning: previous dump at t=70, requesting t=70, dump call ignored
+%Warning: previous dump at t=70, requesting t=70, dump call ignored
+%Warning: previous dump at t=80, requesting t=80, dump call ignored
+%Warning: previous dump at t=80, requesting t=80, dump call ignored
+%Warning: previous dump at t=80, requesting t=80, dump call ignored
+%Warning: previous dump at t=90, requesting t=90, dump call ignored
+%Warning: previous dump at t=90, requesting t=90, dump call ignored
+%Warning: previous dump at t=100, requesting t=100, dump call ignored
+%Warning: previous dump at t=100, requesting t=100, dump call ignored
+%Warning: previous dump at t=100, requesting t=100, dump call ignored
+%Warning: previous dump at t=110, requesting t=110, dump call ignored
+%Warning: previous dump at t=110, requesting t=110, dump call ignored
+%Warning: previous dump at t=110, requesting t=110, dump call ignored
+%Warning: previous dump at t=120, requesting t=120, dump call ignored
+%Warning: previous dump at t=120, requesting t=120, dump call ignored
+%Warning: previous dump at t=130, requesting t=130, dump call ignored
+%Warning: previous dump at t=130, requesting t=130, dump call ignored
+%Warning: previous dump at t=130, requesting t=130, dump call ignored
+%Warning: previous dump at t=140, requesting t=140, dump call ignored
+%Warning: previous dump at t=140, requesting t=140, dump call ignored
+%Warning: previous dump at t=150, requesting t=150, dump call ignored
+%Warning: previous dump at t=150, requesting t=150, dump call ignored
+%Warning: previous dump at t=150, requesting t=150, dump call ignored
+%Warning: previous dump at t=160, requesting t=160, dump call ignored
+%Warning: previous dump at t=160, requesting t=160, dump call ignored
+%Warning: previous dump at t=170, requesting t=170, dump call ignored
+%Warning: previous dump at t=170, requesting t=170, dump call ignored
+%Warning: previous dump at t=170, requesting t=170, dump call ignored
+%Warning: previous dump at t=180, requesting t=180, dump call ignored
+%Warning: previous dump at t=180, requesting t=180, dump call ignored
+%Warning: previous dump at t=190, requesting t=190, dump call ignored
+%Warning: previous dump at t=190, requesting t=190, dump call ignored
+%Warning: previous dump at t=190, requesting t=190, dump call ignored
+%Warning: previous dump at t=200, requesting t=200, dump call ignored
+%Warning: previous dump at t=200, requesting t=200, dump call ignored
+%Warning: previous dump at t=210, requesting t=210, dump call ignored
+%Warning: previous dump at t=210, requesting t=210, dump call ignored
+%Warning: previous dump at t=210, requesting t=210, dump call ignored
+%Warning: previous dump at t=210, requesting t=210, dump call ignored
+%Warning: previous dump at t=220, requesting t=220, dump call ignored
+%Warning: previous dump at t=220, requesting t=220, dump call ignored
+%Warning: previous dump at t=230, requesting t=230, dump call ignored
+[       OK ] T18_clear_match_collision_set_dominant
+
+Tests: 1 passed, 0 failed, 1 executed
+
+Functional coverage bins:
+  access_compare: 2
+  access_control: 3
+  access_counter: 2
+  access_status: 2
+  apb_read: 1
+  apb_write: 8
+  clear_match_collision: 1
+  compare_match: 2
+  irq_active_cycle: 13
+  pstrb_full: 4
+  pstrb_partial: 4
+  status_clear: 1
+
+Scoreboard: PASS checks=66 failures=0
