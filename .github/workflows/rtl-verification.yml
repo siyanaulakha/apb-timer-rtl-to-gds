@@ -46,6 +46,8 @@ jobs:
         run: |
           docker run --rm \
             --user "$(id -u):$(id -g)" \
+            --env HOME=/tmp \
+            --env CCACHE_DISABLE=1 \
             --volume "$GITHUB_WORKSPACE:/work" \
             --workdir /work \
             --entrypoint /bin/bash \
@@ -59,6 +61,8 @@ jobs:
         run: |
           docker run --rm \
             --user "$(id -u):$(id -g)" \
+            --env HOME=/tmp \
+            --env CCACHE_DISABLE=1 \
             --volume "$GITHUB_WORKSPACE:/work" \
             --workdir /work \
             --entrypoint /bin/bash \
