@@ -11,3 +11,10 @@ __pycache__/
 .idea/
 openlane/runs/
 results/verification/verilator-coverage.dat
+# OpenLane generated runs and local logs
+results/local-run/
+# Temporary OpenLane configuration backups
+openlane/config.before_*.json
+openlane/*.before_*.sdc
+openlane/*failed_setup*.json
+openlane/*failed_setup*.sdc
