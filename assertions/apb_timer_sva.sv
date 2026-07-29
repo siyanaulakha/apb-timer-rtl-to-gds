@@ -18,19 +18,18 @@ module apb_timer_sva (
 
 `ifdef APB_TIMER_ENABLE_SVA
     default clocking cb @(posedge PCLK); endclocking
-    default disable iff (!PRESETn);
 
-    apb_access_requires_select: assert property (PENABLE |-> PSEL);
-    ready_is_constant:          assert property (PREADY == 1'b1);
-    error_only_in_access:       assert property (PSLVERR |-> (PSEL && PENABLE));
+    apb_access_requires_select: assert property (disable iff (!PRESETn) PENABLE |-> PSEL);
+    ready_is_constant:          assert property (disable iff (!PRESETn) PREADY == 1'b1);
+    error_only_in_access:       assert property (disable iff (!PRESETn) PSLVERR |-> (PSEL && PENABLE));
 
-    apb_control_stable_during_wait: assert property (
+    apb_control_stable_during_wait: assert property (disable iff (!PRESETn) 
         PSEL && PENABLE && !PREADY |=>
         $stable({PADDR, PWRITE, PWDATA, PSTRB, PPROT})
     );
 
-    irq_known: assert property (!$isunknown(irq_o));
-    read_data_known_on_valid_read: assert property (
+    irq_known: assert property (disable iff (!PRESETn) !$isunknown(irq_o));
+    read_data_known_on_valid_read: assert property (disable iff (!PRESETn) 
         PSEL && PENABLE && !PWRITE && PREADY && !PSLVERR |-> !$isunknown(PRDATA)
     );
 `endif
