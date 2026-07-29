@@ -7,9 +7,12 @@ command -v verilator >/dev/null 2>&1 || {
   exit 127
 }
 mkdir -p build/lint results/verification
-verilator --lint-only --sv --Wall --Wno-DECLFILENAME --Wno-UNUSEDPARAM \
+verilator --version
+verilator --lint-only --sv --assert --Wall \
+  --Wno-DECLFILENAME --Wno-UNUSEDPARAM --Wno-UNUSEDSIGNAL --Wno-SYNCASYNCNET \
+  -DAPB_TIMER_ENABLE_SVA \
   -Irtl \
   --top-module apb_timer \
-  rtl/apb_timer.sv \
+  rtl/apb_timer.sv assertions/apb_timer_sva.sv \
   2>&1 | tee build/lint/verilator-lint.log
 cp build/lint/verilator-lint.log results/verification/verilator-lint.log

@@ -2,32 +2,79 @@ name: RTL verification
 
 on:
   push:
+    branches: [main]
   pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rtl-verification-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  VERILATOR_IMAGE: verilator/verilator:v5.050
 
 jobs:
   verify:
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Install open-source RTL tools
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install host RTL tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y iverilog verilator yosys make g++ python3
+          sudo apt-get install -y --no-install-recommends \
+            iverilog yosys make g++ python3
+          iverilog -V | head -n 3
+          yosys -V
+
+      - name: Pull pinned Verilator image
+        run: |
+          docker pull "$VERILATOR_IMAGE"
+          docker run --rm "$VERILATOR_IMAGE" --version
+
       - name: Check generated interfaces
         run: make check-generated
-      - name: Lint
-        run: make lint
+
+      - name: Lint RTL and bound assertions
+        run: |
+          docker run --rm \
+            --user "$(id -u):$(id -g)" \
+            --volume "$GITHUB_WORKSPACE:/work" \
+            --workdir /work \
+            --entrypoint /bin/bash \
+            "$VERILATOR_IMAGE" \
+            -lc 'set -euo pipefail; make lint'
+
       - name: Icarus smoke test
         run: make smoke
+
       - name: Verilator C++ regression
-        run: make verify RANDOM_OPERATIONS=250 SEED=107
+        run: |
+          docker run --rm \
+            --user "$(id -u):$(id -g)" \
+            --volume "$GITHUB_WORKSPACE:/work" \
+            --workdir /work \
+            --entrypoint /bin/bash \
+            "$VERILATOR_IMAGE" \
+            -lc 'set -euo pipefail; make verify RANDOM_OPERATIONS=250 SEED=107'
+
       - name: Yosys synthesis
         run: make synth
+
       - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: apb-timer-reports
+          name: apb-timer-reports-${{ github.run_id }}
+          retention-days: 14
           path: |
             results/
             build/lint/
+            build/yosys/

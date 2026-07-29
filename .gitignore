@@ -18,3 +18,14 @@ openlane/config.before_*.json
 openlane/*.before_*.sdc
 openlane/*failed_setup*.json
 openlane/*failed_setup*.sdc
+
+# Large frozen OpenLane views kept locally; publish compact metrics/summaries only
+results/final-openlane/def/
+results/final-openlane/gds/
+results/final-openlane/lef/
+results/final-openlane/lib/
+results/final-openlane/nl/
+results/final-openlane/pnl/
+results/final-openlane/sdc/
+results/final-openlane/sdf/
+results/final-openlane/spef/

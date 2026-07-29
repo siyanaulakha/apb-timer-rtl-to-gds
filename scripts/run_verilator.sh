@@ -14,6 +14,7 @@ TRACE="${TRACE:-0}"
 OBJ_DIR="build/verilator/obj_dir"
 mkdir -p "$OBJ_DIR" results/verification
 rm -f coverage.dat
+verilator --version
 
 CPP_SOURCES=(
   verification/cpp/src/simulation_context.cpp
