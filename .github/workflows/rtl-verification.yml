@@ -16,6 +16,7 @@ concurrency:
 
 env:
   VERILATOR_IMAGE: verilator/verilator:v5.050
+  EVIDENCE_MODE: ci
 
 jobs:
   verify:
@@ -67,7 +68,7 @@ jobs:
             --workdir /work \
             --entrypoint /bin/bash \
             "$VERILATOR_IMAGE" \
-            -lc 'set -euo pipefail; make verify RANDOM_OPERATIONS=250 SEED=107'
+            -lc 'set -euo pipefail; make verify RANDOM_OPERATIONS=250 SEED=107 EVIDENCE_MODE=ci'
 
       - name: Yosys synthesis
         run: make synth
@@ -79,6 +80,7 @@ jobs:
           name: apb-timer-reports-${{ github.run_id }}
           retention-days: 14
           path: |
-            results/
             build/lint/
+            build/iverilog-smoke.log
+            build/verilator/runs/ci/
             build/yosys/

@@ -7,8 +7,9 @@ SEED ?= 107
 TEST ?=
 RANDOM_OPERATIONS ?= 500
 TRACE ?= 0
+EVIDENCE_MODE ?= auto
 
-.PHONY: help generate check-generated lint smoke verify coverage synth openlane results all clean tool-versions
+.PHONY: help generate check-generated lint smoke verify evidence coverage synth openlane results all clean tool-versions
 
 help:
 	@printf '%s\n' \
@@ -20,6 +21,7 @@ help:
 	  '  make lint              Run Verilator lint' \
 	  '  make smoke             Run Icarus self-checking smoke test' \
 	  '  make verify            Run C++/Verilator regression' \
+	  '  make evidence          Regenerate canonical 30-test evidence' \
 	  '  make verify TEST=NAME  Run one named C++ test' \
 	  '  make coverage          Run regression with coverage and waveform' \
 	  '  make synth             Run Yosys synthesis' \
@@ -41,10 +43,13 @@ smoke: generate
 	@bash scripts/run_iverilog.sh
 
 verify: generate
-	@SEED='$(SEED)' TEST='$(TEST)' RANDOM_OPERATIONS='$(RANDOM_OPERATIONS)' TRACE='$(TRACE)' bash scripts/run_verilator.sh
+	@SEED='$(SEED)' TEST='$(TEST)' RANDOM_OPERATIONS='$(RANDOM_OPERATIONS)' TRACE='$(TRACE)' EVIDENCE_MODE='$(EVIDENCE_MODE)' bash scripts/run_verilator.sh
+
+evidence: generate
+	@SEED=107 TEST='' RANDOM_OPERATIONS=500 TRACE=0 EVIDENCE_MODE=canonical bash scripts/run_verilator.sh
 
 coverage: generate
-	@SEED='$(SEED)' RANDOM_OPERATIONS='$(RANDOM_OPERATIONS)' TRACE=1 bash scripts/run_verilator.sh
+	@SEED='$(SEED)' RANDOM_OPERATIONS='$(RANDOM_OPERATIONS)' TRACE=1 EVIDENCE_MODE=coverage bash scripts/run_verilator.sh
 
 synth: generate
 	@bash scripts/run_yosys.sh
@@ -58,8 +63,8 @@ results:
 tool-versions:
 	@bash scripts/report_tool_versions.sh
 
-all: generate check-generated lint smoke verify synth results
+all: generate check-generated lint smoke evidence synth results
 
 clean:
 	@rm -rf $(BUILD)
-	@rm -f results/verification/functional-coverage.md
+	@rm -f coverage.dat

@@ -6,8 +6,11 @@ command -v yosys >/dev/null 2>&1 || {
   echo "ERROR: yosys is not installed. Run scripts/setup_tools.sh." >&2
   exit 127
 }
+EVIDENCE_MODE="${EVIDENCE_MODE:-canonical}"
 mkdir -p build/yosys results/synthesis
 yosys -s synthesis/synth.ys 2>&1 | tee build/yosys/yosys.log
-cp build/yosys/yosys.log results/synthesis/yosys.log
-cp build/yosys/apb_timer_synth.v results/synthesis/apb_timer_synth.v
-cp build/yosys/apb_timer_synth.json results/synthesis/apb_timer_synth.json
+if [[ "$EVIDENCE_MODE" == "canonical" ]]; then
+  cp build/yosys/yosys.log results/synthesis/yosys.log
+  cp build/yosys/apb_timer_synth.v results/synthesis/apb_timer_synth.v
+  cp build/yosys/apb_timer_synth.json results/synthesis/apb_timer_synth.json
+fi
