@@ -10,7 +10,7 @@
 - Verilator regression: **30/30 passed; 0 failed**
 - Scoreboard: **PASS — 4,099 checks, 0 failures**
 - Randomized traffic: **500 operations, seed 107**
-- Canonical run scope: **Not recorded**
+- Canonical run scope: **full-regression**
 - Assertions: **enabled in lint and Verilator regression**
 
 ### Selected functional-coverage bins

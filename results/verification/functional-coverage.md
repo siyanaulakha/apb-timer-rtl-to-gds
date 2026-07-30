@@ -2,15 +2,20 @@
 
 | Bin | Hits |
 |---|---:|
-| `access_compare` | 2 |
-| `access_control` | 3 |
-| `access_counter` | 2 |
-| `access_status` | 2 |
-| `apb_read` | 1 |
-| `apb_write` | 8 |
+| `access_compare` | 76 |
+| `access_control` | 77 |
+| `access_counter` | 80 |
+| `access_status` | 58 |
+| `apb_read` | 271 |
+| `apb_write` | 291 |
 | `clear_match_collision` | 1 |
-| `compare_match` | 2 |
-| `irq_active_cycle` | 13 |
-| `pstrb_full` | 4 |
-| `pstrb_partial` | 4 |
-| `status_clear` | 1 |
+| `compare_match` | 15 |
+| `counter_rollover` | 2 |
+| `invalid_access` | 90 |
+| `irq_active_cycle` | 39 |
+| `misaligned_access` | 181 |
+| `pstrb_full` | 38 |
+| `pstrb_partial` | 122 |
+| `pstrb_zero` | 7 |
+| `random_reset` | 12 |
+| `status_clear` | 5 |

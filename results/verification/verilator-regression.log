@@ -1,78 +1,86 @@
 APB Timer C++ Verification
-seed=107 random_operations=500 trace=1
+seed=107 random_operations=500 trace=0
 
+[ RUN      ] T01_reset_values
+[       OK ] T01_reset_values
+[ RUN      ] T02_control_write_readback
+[       OK ] T02_control_write_readback
+[ RUN      ] T03_control_byte_strobe
+[       OK ] T03_control_byte_strobe
+[ RUN      ] T04_compare_full_write
+[       OK ] T04_compare_full_write
+[ RUN      ] T05_compare_partial_write
+[       OK ] T05_compare_partial_write
+[ RUN      ] T06_counter_full_write
+[       OK ] T06_counter_full_write
+[ RUN      ] T07_counter_partial_write
+[       OK ] T07_counter_partial_write
+[ RUN      ] T08_disabled_counter_holds
+[       OK ] T08_disabled_counter_holds
+[ RUN      ] T09_enabled_counter_increments
+[       OK ] T09_enabled_counter_increments
+[ RUN      ] T10_control_write_suppresses_increment
+[       OK ] T10_control_write_suppresses_increment
+[ RUN      ] T11_counter_write_suppresses_increment
+[       OK ] T11_counter_write_suppresses_increment
+[ RUN      ] T12_compare_sets_pending
+[       OK ] T12_compare_sets_pending
+[ RUN      ] T13_match_irq_disabled
+[       OK ] T13_match_irq_disabled
+[ RUN      ] T14_match_irq_enabled
+[       OK ] T14_match_irq_enabled
+[ RUN      ] T15_enable_irq_with_pending_match
+[       OK ] T15_enable_irq_with_pending_match
+[ RUN      ] T16_disable_irq_preserves_pending
+[       OK ] T16_disable_irq_preserves_pending
+[ RUN      ] T17_status_w1c
+[       OK ] T17_status_w1c
 [ RUN      ] T18_clear_match_collision_set_dominant
-%Warning: previous dump at t=0, requesting t=0, dump call ignored
-%Warning: previous dump at t=0, requesting t=0, dump call ignored
-%Warning: previous dump at t=10, requesting t=10, dump call ignored
-%Warning: previous dump at t=20, requesting t=20, dump call ignored
-%Warning: previous dump at t=30, requesting t=30, dump call ignored
-%Warning: previous dump at t=30, requesting t=30, dump call ignored
-%Warning: previous dump at t=40, requesting t=40, dump call ignored
-%Warning: previous dump at t=40, requesting t=40, dump call ignored
-%Warning: previous dump at t=50, requesting t=50, dump call ignored
-%Warning: previous dump at t=50, requesting t=50, dump call ignored
-%Warning: previous dump at t=60, requesting t=60, dump call ignored
-%Warning: previous dump at t=60, requesting t=60, dump call ignored
-%Warning: previous dump at t=60, requesting t=60, dump call ignored
-%Warning: previous dump at t=70, requesting t=70, dump call ignored
-%Warning: previous dump at t=70, requesting t=70, dump call ignored
-%Warning: previous dump at t=80, requesting t=80, dump call ignored
-%Warning: previous dump at t=80, requesting t=80, dump call ignored
-%Warning: previous dump at t=80, requesting t=80, dump call ignored
-%Warning: previous dump at t=90, requesting t=90, dump call ignored
-%Warning: previous dump at t=90, requesting t=90, dump call ignored
-%Warning: previous dump at t=100, requesting t=100, dump call ignored
-%Warning: previous dump at t=100, requesting t=100, dump call ignored
-%Warning: previous dump at t=100, requesting t=100, dump call ignored
-%Warning: previous dump at t=110, requesting t=110, dump call ignored
-%Warning: previous dump at t=110, requesting t=110, dump call ignored
-%Warning: previous dump at t=110, requesting t=110, dump call ignored
-%Warning: previous dump at t=120, requesting t=120, dump call ignored
-%Warning: previous dump at t=120, requesting t=120, dump call ignored
-%Warning: previous dump at t=130, requesting t=130, dump call ignored
-%Warning: previous dump at t=130, requesting t=130, dump call ignored
-%Warning: previous dump at t=130, requesting t=130, dump call ignored
-%Warning: previous dump at t=140, requesting t=140, dump call ignored
-%Warning: previous dump at t=140, requesting t=140, dump call ignored
-%Warning: previous dump at t=150, requesting t=150, dump call ignored
-%Warning: previous dump at t=150, requesting t=150, dump call ignored
-%Warning: previous dump at t=150, requesting t=150, dump call ignored
-%Warning: previous dump at t=160, requesting t=160, dump call ignored
-%Warning: previous dump at t=160, requesting t=160, dump call ignored
-%Warning: previous dump at t=170, requesting t=170, dump call ignored
-%Warning: previous dump at t=170, requesting t=170, dump call ignored
-%Warning: previous dump at t=170, requesting t=170, dump call ignored
-%Warning: previous dump at t=180, requesting t=180, dump call ignored
-%Warning: previous dump at t=180, requesting t=180, dump call ignored
-%Warning: previous dump at t=190, requesting t=190, dump call ignored
-%Warning: previous dump at t=190, requesting t=190, dump call ignored
-%Warning: previous dump at t=190, requesting t=190, dump call ignored
-%Warning: previous dump at t=200, requesting t=200, dump call ignored
-%Warning: previous dump at t=200, requesting t=200, dump call ignored
-%Warning: previous dump at t=210, requesting t=210, dump call ignored
-%Warning: previous dump at t=210, requesting t=210, dump call ignored
-%Warning: previous dump at t=210, requesting t=210, dump call ignored
-%Warning: previous dump at t=210, requesting t=210, dump call ignored
-%Warning: previous dump at t=220, requesting t=220, dump call ignored
-%Warning: previous dump at t=220, requesting t=220, dump call ignored
-%Warning: previous dump at t=230, requesting t=230, dump call ignored
 [       OK ] T18_clear_match_collision_set_dominant
+[ RUN      ] T19_disable_restart
+[       OK ] T19_disable_restart
+[ RUN      ] T20_counter_rollover
+[       OK ] T20_counter_rollover
+[ RUN      ] T21_compare_zero_rollover_match
+[       OK ] T21_compare_zero_rollover_match
+[ RUN      ] T22_back_to_back_transfers
+[       OK ] T22_back_to_back_transfers
+[ RUN      ] T23_invalid_aligned_address
+[       OK ] T23_invalid_aligned_address
+[ RUN      ] T24_misaligned_address
+[       OK ] T24_misaligned_address
+[ RUN      ] T25_zero_strobe_noop
+[       OK ] T25_zero_strobe_noop
+[ RUN      ] T26_compare_change_while_running
+[       OK ] T26_compare_change_while_running
+[ RUN      ] T27_old_compare_used_on_write_edge
+[       OK ] T27_old_compare_used_on_write_edge
+[ RUN      ] T28_reset_during_active_counting
+[       OK ] T28_reset_during_active_counting
+[ RUN      ] T29_repeated_match_while_pending
+[       OK ] T29_repeated_match_while_pending
+[ RUN      ] T30_randomized_apb_sequences
+[       OK ] T30_randomized_apb_sequences
 
-Tests: 1 passed, 0 failed, 1 executed
+Tests: 30 passed, 0 failed, 30 executed
 
 Functional coverage bins:
-  access_compare: 2
-  access_control: 3
-  access_counter: 2
-  access_status: 2
-  apb_read: 1
-  apb_write: 8
+  access_compare: 76
+  access_control: 77
+  access_counter: 80
+  access_status: 58
+  apb_read: 271
+  apb_write: 291
   clear_match_collision: 1
-  compare_match: 2
-  irq_active_cycle: 13
-  pstrb_full: 4
-  pstrb_partial: 4
-  status_clear: 1
+  compare_match: 15
+  counter_rollover: 2
+  invalid_access: 90
+  irq_active_cycle: 39
+  misaligned_access: 181
+  pstrb_full: 38
+  pstrb_partial: 122
+  pstrb_zero: 7
+  random_reset: 12
+  status_clear: 5
 
-Scoreboard: PASS checks=66 failures=0
+Scoreboard: PASS checks=4099 failures=0

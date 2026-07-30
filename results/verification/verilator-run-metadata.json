@@ -1,0 +1,10 @@
+{
+  "evidence_mode": "canonical",
+  "run_scope": "full-regression",
+  "selected_test": null,
+  "seed": 107,
+  "random_operations": 500,
+  "trace_enabled": false,
+  "verilator_version": "Verilator 5.051 devel rev v5.050-103-g5fd1c93d4 (mod)",
+  "source_commit_at_run": "09c58dc87d241748bca1930379d968a808bf221d"
+}

@@ -564,6 +564,6 @@ Dumping module `\apb_timer'.
 
 16. Executing JSON backend.
 
-End of script. Logfile hash: 15adda8ec8, time: 0.12s, user: 0.05s, system: 0.01s, MEM: 23.55 MB peak
+End of script. Logfile hash: 15adda8ec8, time: 0.13s, user: 0.05s, system: 0.00s, MEM: 22.86 MB peak
 Yosys 0.67+102 (git sha1 07a615a28-dirty, Release, Clang /usr/bin/clang++ 21.1.8)
-Time spent: 65% 1x abc (0 sec), 7% 1x techmap (0 sec), ...
+Time spent: 64% 1x abc (0 sec), 6% 1x techmap (0 sec), ...
