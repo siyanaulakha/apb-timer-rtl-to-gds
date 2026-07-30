@@ -9,6 +9,19 @@
 5. Assertions for protocol assumptions and known outputs.
 6. Semantic functional coverage for corner-case evidence.
 
+
+## Bound assertion scope
+
+The portable clocked assertion module checks:
+
+- `PENABLE` is never asserted without `PSEL`;
+- every access phase is preceded by a setup phase;
+- `PADDR`, `PWRITE`, `PWDATA`, `PSTRB`, and `PPROT` remain stable from setup to access;
+- `PREADY` remains high for the zero-wait-state implementation;
+- `PSLVERR` is asserted only during an access phase;
+- `irq_o` is never unknown;
+- successful read data is never unknown.
+
 ## Directed suite
 
 | ID | Scenario | Principal expected result |

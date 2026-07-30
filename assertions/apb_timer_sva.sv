@@ -18,7 +18,7 @@ module apb_timer_sva (
 
 `ifdef APB_TIMER_ENABLE_SVA
     logic                       previous_cycle_valid;
-    logic                       previous_wait_state;
+    logic                       previous_setup_phase;
     logic [11:0]                previous_PADDR;
     logic                       previous_PWRITE;
     logic [31:0]                previous_PWDATA;
@@ -33,7 +33,7 @@ module apb_timer_sva (
     always_ff @(posedge PCLK or negedge PRESETn) begin
         if (!PRESETn) begin
             previous_cycle_valid <= 1'b0;
-            previous_wait_state  <= 1'b0;
+            previous_setup_phase <= 1'b0;
             previous_PADDR       <= '0;
             previous_PWRITE      <= 1'b0;
             previous_PWDATA      <= '0;
@@ -58,8 +58,21 @@ module apb_timer_sva (
                     "PSLVERR asserted outside an APB access phase"
                 );
 
-            if (previous_cycle_valid && previous_wait_state) begin
-                apb_control_stable_during_wait:
+            if (PENABLE) begin
+                apb_access_follows_setup:
+                    assert (previous_cycle_valid && previous_setup_phase)
+                    else $error(
+                        "APB access phase was not preceded by a setup phase"
+                    );
+            end
+
+            if (
+                previous_cycle_valid &&
+                previous_setup_phase &&
+                PSEL &&
+                PENABLE
+            ) begin
+                apb_control_stable_setup_to_access:
                     assert (
                         PADDR  == previous_PADDR  &&
                         PWRITE == previous_PWRITE &&
@@ -68,7 +81,7 @@ module apb_timer_sva (
                         PPROT  == previous_PPROT
                     )
                     else $error(
-                        "APB control changed while the slave was waiting"
+                        "APB control changed between setup and access"
                     );
             end
 
@@ -91,7 +104,7 @@ module apb_timer_sva (
             end
 
             previous_cycle_valid <= 1'b1;
-            previous_wait_state  <= PSEL && PENABLE && !PREADY;
+            previous_setup_phase <= PSEL && !PENABLE;
             previous_PADDR       <= PADDR;
             previous_PWRITE      <= PWRITE;
             previous_PWDATA      <= PWDATA;

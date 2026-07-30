@@ -3,7 +3,7 @@
 | Requirement | Description | Tests |
 |---|---|---|
 | RST-01 | Defined asynchronous reset state | T01, T28 |
-| APB-01 | Legal two-phase APB transfers | T02–T30, assertions |
+| APB-01 | Legal two-phase APB transfers and setup-to-access stability | T02–T30, assertions |
 | APB-02 | Constant ready response | All bus tests, assertion |
 | APB-03 | Invalid and misaligned accesses error | T23, T24, T30 |
 | APB-04 | Back-to-back transfers supported | T22 |
