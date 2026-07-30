@@ -49,6 +49,7 @@ jobs:
             --user "$(id -u):$(id -g)" \
             --env HOME=/tmp \
             --env CCACHE_DISABLE=1 \
+            --env EVIDENCE_MODE=ci \
             --volume "$GITHUB_WORKSPACE:/work" \
             --workdir /work \
             --entrypoint /bin/bash \
@@ -64,6 +65,7 @@ jobs:
             --user "$(id -u):$(id -g)" \
             --env HOME=/tmp \
             --env CCACHE_DISABLE=1 \
+            --env EVIDENCE_MODE=ci \
             --volume "$GITHUB_WORKSPACE:/work" \
             --workdir /work \
             --entrypoint /bin/bash \

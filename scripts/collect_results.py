@@ -217,7 +217,43 @@ def main() -> None:
         "",
         "## Resume gate",
         "",
-        "It is defensible to claim a synthesizable APB4 timer, reusable C++17/Verilator verification, 30-test deterministic regression, generic Yosys synthesis, and a 100 MHz Sky130 RTL-to-GDSII implementation with zero setup, hold, slew, fanout, DRC, LVS, and antenna violations.",
+    ]
+
+    canonical_verification_ok = bool(
+        tests
+        and tests.group(1) == "30"
+        and tests.group(2) == "0"
+        and tests.group(3) == "30"
+        and scoreboard
+        and scoreboard.group(1) == "PASS"
+        and scoreboard.group(2) == "4099"
+        and scoreboard.group(3) == "0"
+    )
+    physical_signoff_ok = all(
+        value == 0
+        for value in (
+            setup_vios,
+            hold_vios,
+            slew_vios,
+            fanout_vios,
+            drc_route,
+            drc_magic,
+            drc_klayout,
+            lvs,
+            antenna,
+        )
+    )
+
+    if canonical_verification_ok and physical_signoff_ok:
+        lines.append(
+            "It is defensible to claim a synthesizable APB4 timer, reusable C++17/Verilator verification, 30-test deterministic regression, generic Yosys synthesis, and a 100 MHz Sky130 RTL-to-GDSII implementation with zero setup, hold, slew, fanout, DRC, LVS, and antenna violations."
+        )
+    else:
+        lines.append(
+            "**BLOCKED:** the canonical 30-test/4,099-check verification evidence or zero-violation physical metrics are missing or inconsistent. Run `make all` and inspect the generated summary before using quantified claims."
+        )
+
+    lines += [
         "",
         "Do not describe the project as UVM, commercial signoff, silicon-validated, or tapeout-ready.",
         "",

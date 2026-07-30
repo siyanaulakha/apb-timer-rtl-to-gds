@@ -27,7 +27,7 @@ help:
 	  '  make synth             Run Yosys synthesis' \
 	  '  make openlane          Run OpenLane 2 flow' \
 	  '  make results           Collect available metrics without inventing values' \
-	  '  make all               Generate, lint, smoke, verify, synth' \
+	  '  make all               Regenerate canonical evidence and synthesis' \
 	  '  make clean             Remove generated build artifacts'
 
 generate:
