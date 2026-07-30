@@ -29,3 +29,6 @@ results/final-openlane/pnl/
 results/final-openlane/sdc/
 results/final-openlane/sdf/
 results/final-openlane/spef/
+
+# Generated release bundles
+dist/

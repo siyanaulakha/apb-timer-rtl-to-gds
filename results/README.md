@@ -1,19 +1,24 @@
-# Results Policy
+# Results and Evidence Policy
 
-Only compact, inspectable, tool-generated evidence belongs here. Do not commit enormous temporary OpenLane directories.
+The repository keeps compact, inspectable evidence in Git and keeps large generated run directories out of version control.
 
-Current compact evidence includes a focused GTKWave verification capture under `results/verification/`.
+## Canonical evidence
 
-Expected final evidence:
+- `verification/`: canonical 30-test Verilator regression, semantic coverage, Icarus smoke result, lint log, and focused waveform image
+- `synthesis/`: technology-independent Yosys log and synthesized netlists
+- `final-openlane/`: frozen Sky130 metrics, exact constraints/configuration, signoff summary, warning audit, and local-view checksums
+- `results-summary.md`: generated cross-flow summary
 
-- Icarus smoke log
-- Verilator regression and functional-coverage reports
-- Yosys synthesis log and synthesized netlist
-- OpenLane metrics JSON and flow summary
-- Setup and hold timing reports
-- Magic and KLayout DRC summaries
-- Netgen LVS summary
-- Final GDSII checksum
-- Tool-version record
+Focused tests, reduced CI runs, temporary flow logs, and intermediate OpenLane directories belong under `build/`, `results/local-run/`, or `openlane/runs/` and are ignored.
 
-Until a flow is run, `results-summary.md` must say `Not measured` rather than contain estimated numbers.
+Regenerate the canonical evidence with:
+
+```bash
+make all
+```
+
+Package the ignored final physical views for a GitHub Release with:
+
+```bash
+./scripts/package_final_openlane.sh
+```

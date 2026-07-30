@@ -1,6 +1,0 @@
-Behavioral stand-in validation only; not a real RTL simulation.
-Seed: 107
-Random operations: 500
-Tests: 30 passed, 0 failed
-Scoreboard: 4099 checks, 0 failures
-Corrections: smoke-test scheduling race; Verilator coverage database write

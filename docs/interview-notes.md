@@ -2,11 +2,11 @@
 
 ## Two-minute explanation
 
-I built a 32-bit APB4 timer peripheral to demonstrate an end-to-end SoC hardware workflow. The RTL implements a writable counter, programmable compare value, sticky match status, maskable level interrupt, partial byte writes, and deterministic invalid-address errors. I froze ambiguous behaviours before coding, especially whether writes pause counting, whether the old or new compare value applies on a write edge, and what happens when software clears status on the same edge as a hardware match.
+I designed a synthesizable 32-bit APB4 timer peripheral with a writable counter, programmable compare value, sticky match status, maskable level interrupt, partial byte writes, deterministic error handling, and explicitly defined simultaneous-event priority.
 
-For verification, I created a C++17 environment around Verilator. An APB master drives legal setup and access phases, an independent cycle-accurate reference model predicts state, and a scoreboard checks read data, errors, ready, and IRQ. The regression contains 29 directed tests plus deterministic randomized sequences, assertions, semantic coverage, failure seeds, and non-zero exit codes. The same register JSON generates the RTL and C++ constants to prevent interface drift.
+I verified it with a reusable C++17 environment around Verilator. An APB master drives legal setup and access phases, an independent cycle-accurate reference model predicts state, and a scoreboard checks read data, errors, ready, and interrupt behavior. The canonical regression contains 29 directed tests plus one deterministic randomized test, assertions, semantic coverage, failure seeds, and non-zero process exits.
 
-I then synthesize with Yosys and use a pinned OpenLane/OpenROAD flow targeting 100 MHz in SKY130. I only claim timing, area, DRC, and LVS values after preserving the real reports.
+I synthesized the RTL with Yosys and completed a Sky130 OpenLane 2 implementation targeting 100 MHz. The frozen result has zero setup, hold, slew, fanout, route DRC, Magic DRC, KLayout DRC, LVS, and antenna violations, with 710 standard cells and 5,526.55 µm² standard-cell area.
 
 ## Likely questions
 
@@ -28,8 +28,12 @@ Set dominates clear: `(pending && !clear) || match`. This avoids losing a real h
 
 ### Is this UVM?
 
-No. It is a reusable object-oriented C++ verification environment using transaction, driver, reference-model, scoreboard, assertion, and coverage concepts. Claiming UVM would be inaccurate.
+No. It is a reusable object-oriented C++ verification environment using transaction, driver, reference-model, scoreboard, assertion, and coverage concepts.
+
+### What does the 0.723 mW value mean?
+
+It is an OpenLane estimate under the flow's activity assumptions. It is useful as a flow metric but is not workload-characterized silicon power.
 
 ### What would you extend next?
 
-Add a prescaler and periodic auto-reload, connect the block through an APB interconnect to my RISC-V core, and run a firmware-level interrupt demonstration on FPGA.
+Add a prescaler and periodic auto-reload, connect the block through an APB interconnect to a RISC-V core, and demonstrate firmware-driven interrupts on FPGA.
